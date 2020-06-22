@@ -11,14 +11,6 @@
 
   tasks:
 
-    - name: Facts
-      block:
-
-      - name: Instances ID
-        debug:
-          msg: "ID: {{ item.instance_id }} - State: {{ item.state.name }} - Public DNS: {{ item.public_dns_name }}"
-        loop: "{{ result.instances }}"
-
 
     - name: Provisioning EC2 instances
       block:
