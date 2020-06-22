@@ -7,7 +7,9 @@
     region: us-east-2
     image: ami-02f147dfb8be58a10
     id: "web-app"
-    sec_group: sg-0fd2815209cd54520
+    sec_group: Open
+    subnet_id: subnet-05f3a4202f1e7127f
+    instance_type: t2.micro
 
   tasks:
 
@@ -19,9 +21,11 @@
         ec2:
           key_name: "{{ key_name }}"
           id: "{{ id }}"
-          group_id: "{{ sec_group }}"
+          group: "{{ sec_group }}"
           image: "{{ image }}"
-          instance_type: t2.micro
+          instance_type: "{{ instance_type }}"
           region: "{{ region }}"
+          vpc_subnet_id: "{{ subnet_id }}"
+          assign_public_ip: yes
           wait: true
           count: 1
