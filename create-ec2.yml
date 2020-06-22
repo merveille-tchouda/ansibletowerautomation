@@ -2,17 +2,8 @@
   connection: local
   gather_facts: False
 
-  vars:
-    key_name: JJTechOregon
-    region: us-west-2
-    image: ami-02f147dfb8be58a10
-    sec_group: sg-0fd2815209cd54520
-    subnet_id: subnet-05f3a4202f1e7127f
-    instance_type: t2.micro
-
   tasks:
-
-
+  
     - name: Provisioning EC2 instances
       block:
 
