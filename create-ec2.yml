@@ -13,9 +13,7 @@
       region: "{{ region }}"
       vpc_subnet_id: "{{ subnet_id }}"
       instance_role: "{{ iam_role }}"
-      assign_public_ip: yes
       wait: true
-      count: 1
       volumes:
         - device_name: /dev/sda1
           ebs:
