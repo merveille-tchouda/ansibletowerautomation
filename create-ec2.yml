@@ -9,7 +9,7 @@
       block:
 
       - name: Provision instance(s)
-        ec2:
+        ec2_instance:
           key_name: "{{ key_name }}"
           group_id: "{{ sec_group }}"
           image: "{{ image }}"
