@@ -1,9 +1,10 @@
+---
 - hosts: localhost
   connection: local
   gather_facts: False
 
   tasks:
-  
+
     - name: Provisioning EC2 instances
       block:
 
@@ -15,8 +16,24 @@
           instance_type: "{{ instance_type }}"
           region: "{{ region }}"
           vpc_subnet_id: "{{ subnet_id }}"
+          instance_profile_name: "{{ iam_role }}"
           assign_public_ip: yes
           wait: true
           count: 1
-          
-
+          volumes:
+            - device_name: /dev/sda1
+              ebs:
+                volume_type: gp2
+                volume_size: "{{ root_volume_size }}"
+                delete_on_termination: true
+                encrypted: false
+          name: "{{ instance_name }}"
+          tags:
+            created_by: "{{ your_name }}"
+          user_data: |
+            #!/bin/bash
+            yum update -y
+            yum install httpd -y
+            service httpd start
+            chkconfig httpd on
+            echo "<html><body><h1>Hello JJTech Team</h1></body></html>" > /var/www/html/index.html
