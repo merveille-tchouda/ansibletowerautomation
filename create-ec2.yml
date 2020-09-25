@@ -5,11 +5,7 @@
 
   tasks:
 
-    - name: Provisioning EC2 instances
-      block:
-
-      - name: Provision instance(s)
-        ec2_instance:
+      - amazon.aws.ec2:
           key_name: "{{ key_name }}"
           group_id: "{{ sec_group }}"
           image: "{{ image }}"
@@ -26,7 +22,7 @@
                 volume_type: gp2
                 volume_size: "{{ root_volume_size }}"
                 delete_on_termination: true
-                encrypted: false
+                encrypted: true
           name: "{{ instance_name }}"
           tags:
             created_by: "{{ your_name }}"
