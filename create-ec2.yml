@@ -4,8 +4,8 @@
   gather_facts: False
 
   tasks:
-
-      - amazon.aws.ec2:
+      - name: Create EC2
+        amazon.aws.ec2:
           key_name: "{{ key_name }}"
           group_id: "{{ sec_group }}"
           image: "{{ image }}"
